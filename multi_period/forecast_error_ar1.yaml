@@ -1,0 +1,22 @@
+# AR(1) forecast-error model for load, wind, and solar used in the
+# multi-period study. rho is the lag-1 autocorrelation; sigma is the
+# per-step innovation standard deviation.
+
+load:
+  rho: 0.6
+  sigma_fraction_of_peak_load: 0.010
+
+wind:
+  rho: 0.5
+  sigma_fraction_of_capacity: 0.030
+
+solar:
+  rho: 0.7
+  sigma_fraction_of_capacity: 0.020
+
+cross_correlation:
+  wind_solar: -0.1
+
+constraints:
+  clip_to_capacity: true
+  force_night_solar_zero: true

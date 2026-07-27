@@ -1,0 +1,43 @@
+# Storage fleet for the multi-period study (IEEE 118).
+# Two identical stations provide both energy shifting and fast frequency
+# response (FFR). Totals: 1550 MW / 12000 MWh (2 x 775 MW / 6000 MWh) and
+# 160 MW of FFR (2 x 80 MW). Both stations receive equal base-power and FFR
+# participation (0.5 each) and operate at zero reactive power.
+
+interval_minutes: 5.0
+
+# Per-interval multiplicative standing loss, equal to a 5% loss over a 30-day
+# month: 1 - 0.95^(1 / (30*24*12)).
+self_discharge_per_interval: 5.936706265141645e-6
+
+# Fast frequency response.
+frequency_reserve_participation: true
+ffr_response_delay_s: 0.1      # FFR response time constant (s)
+ffr_hold_minutes: 15.0         # sustained-delivery duration (min)
+ffr_cost_per_mw_h: 5.0         # FFR offer price ($/MW/h)
+
+stations:
+  - id: BESS26
+    bus: 26
+    p_charge_max_mw: 775.0
+    p_discharge_max_mw: 775.0
+    s_rating_mva: 775.0
+    e_max_mwh: 6000.0
+    e_min_fraction: 0.15
+    e_initial_fraction: 0.50
+    eta_charge: 0.95
+    eta_discharge: 0.95
+    ffr_max_mw: 80.0
+    q_base_mvar: 0.0
+  - id: BESS80
+    bus: 80
+    p_charge_max_mw: 775.0
+    p_discharge_max_mw: 775.0
+    s_rating_mva: 775.0
+    e_max_mwh: 6000.0
+    e_min_fraction: 0.15
+    e_initial_fraction: 0.50
+    eta_charge: 0.95
+    eta_discharge: 0.95
+    ffr_max_mw: 80.0
+    q_base_mvar: 0.0
